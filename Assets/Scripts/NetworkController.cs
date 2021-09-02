@@ -25,7 +25,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
         //Debug.Log("Connected to Master");
         base.OnConnectedToMaster();
 
-        //PhotonNetwork.AutomaticallySyncScene = true; //all players same scene
+        PhotonNetwork.AutomaticallySyncScene = true; //all players same scene
         ButtonStart.SetActive(true);
         //Status("Connected to Master");
         Status("Connected to " + PhotonNetwork.ServerAddress);        

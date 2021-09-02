@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 // using Photon.Realtime;
-// using UnityEngine.UI;
+using UnityEngine.UI;
 
-public class MyPlayer : MonoBehaviourPun
+public class MyPlayer : MonoBehaviourPunCallbacks
 {
     public float Movespeed = 3.5f;
     public float Turnspeed = 120f;
     private TextMesh Caption = null;
+    public photonView pv;
+    public Camera camera;
+    
 
-    public int points = 0;
+    //private Text PlayerName = null;
 
     // Start is called before the first frame update
     private void Start()
@@ -22,6 +25,7 @@ public class MyPlayer : MonoBehaviourPun
             {
                 Caption = this.transform.GetChild(i).gameObject.GetComponent<TextMesh>();
                 Caption.text = string.Format("player {0}", photonView.ViewID); //id for the object
+                //PlayerName.text = string.Format("player {0}", photonView.ViewID);
             }
         }
 
@@ -30,8 +34,9 @@ public class MyPlayer : MonoBehaviourPun
     // Update is called once per frame
     private void Update()
     {
-        if(photonView.IsMine == true)
-        {
+        if(pv.IsMine)
+        {   
+            camera.enabled = true;
             Controls();
         }
 
