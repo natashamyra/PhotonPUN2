@@ -10,15 +10,18 @@ public class MyPlayer : MonoBehaviourPunCallbacks
     public float Movespeed = 3.5f;
     public float Turnspeed = 120f;
     private TextMesh Caption = null;
-    public photonView pv;
+    public PhotonView pv;
     public Camera camera;
-    
+
 
     //private Text PlayerName = null;
 
     // Start is called before the first frame update
     private void Start()
     {
+        if(!pv.IsMine)
+        camera.enabled = false; //if photon view not belong to us, kita turn off camera
+
         for(int i=0; i < this.transform.childCount; i++) //looping all the children
         {
             if(this.transform.GetChild(i).name == "Caption")
@@ -34,9 +37,8 @@ public class MyPlayer : MonoBehaviourPunCallbacks
     // Update is called once per frame
     private void Update()
     {
-        if(pv.IsMine)
-        {   
-            camera.enabled = true;
+        if(pv.IsMine) //belong to invidual
+        {
             Controls();
         }
 

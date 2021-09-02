@@ -945,6 +945,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Movespeed: 3.5
   Turnspeed: 120
+  pv: {fileID: 4766557281649946393}
+  camera: {fileID: 2355531644395355756}
 --- !u!1 &8847668948873290942
 GameObject:
   m_ObjectHideFlags: 0
